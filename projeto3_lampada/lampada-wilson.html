@@ -1,0 +1,125 @@
+>
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wilson_light_bulb</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <style>
+      :root {
+        --eu-wilson: black;
+        --enzo: rgb(252, 48, 48);
+        --ari: rgb(44, 44, 252);
+      }
+
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: var(--enzo);
+        background-image: linear-gradient(to top, var(--enzo), var(--ari));
+        background-attachment: fixed;
+        min-height: 100vh;
+      }
+
+      header,
+      section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      header {
+        color: fff;
+        padding-top: 50px;
+      }
+
+      #lamp {
+        width: 90%;
+        max-width: 300px;
+        margin: 20px 0;
+        cursor: pointer;
+      }
+
+      .control {
+        display: flex;
+        gap: 10px;
+
+      }
+
+     div button {
+        width: 100px;
+        padding: 10px 5px;
+        margin:  0 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--eu-wilson);
+        color: white;
+        cursor: pointer;
+        transition: opacity 0.3;
+     }
+
+        div button:hover {
+          opacity: 0.8;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+    <h1>LÂMPADA</h1>
+    </header>
+    <section>
+      <div>
+        <img src="./img/lamp_off.jpeg" alt="Lâmpada Off" id="lamp"/>
+      </div>
+
+      <div>
+        <button id="turnOn">Ligar</button>
+        <button id="turnOff">Desligar</button>
+      </div>
+    </section>
+    </body>
+
+  <script>
+
+    const turnOn = document.getElementById('turnOn');
+    const turnOff = document.getElementById('turnOff');
+    const lamp = document.getElementById('lamp');
+
+    function isLampBroken() {
+      return lamp.src.indexOf ('quebrada') > -1;
+    }
+
+    function lampOn() {
+      if (!isLampBroken()) {
+        lamp.src = './img/lamp_on.jpeg';
+      }
+    }
+
+    function lampOff () {
+      if (!isLampBroken()) {
+        lamp.src = './img/lamp_off.jpeg';
+      }
+    }
+
+    function lampBroken() {
+      lamp.src = './img/lamp_broke.jpeg';
+    } 
+
+    turnOn.addEventListener('click', lampOn);
+    turnOff.addEventListener('click', lampOff);
+    lamp.addEventListener('mouseover', lampOn);
+    lamp.addEventListener('mouseleave', lampOff);
+    lamp.addEventListener('dblclick', lampBroken);
+      </script>
+
+</html>
